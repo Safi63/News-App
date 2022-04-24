@@ -3,9 +3,10 @@ package com.example.api_integration
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class MyAdapter():RecyclerView.Adapter<MyViewHolder>(){
+class MyAdapter(val songs : List<String>):RecyclerView.Adapter<MyAdapter.MyViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val  inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.item_view,parent,false)
@@ -13,15 +14,18 @@ class MyAdapter():RecyclerView.Adapter<MyViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.txtTitle.text = songs[position]
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return songs.size
+    }
+
+    class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView ){
+
+        var txtTitle = itemView.findViewById<TextView>(R.id.title)
+        var txtDescription = itemView.findViewById<TextView>(R.id.description)
     }
 
 }
 
-class MyViewHolder(itemView: View):RecyclerView.ViewHolder(itemView ){
-
-}
